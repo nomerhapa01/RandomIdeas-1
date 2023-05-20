@@ -1,13 +1,18 @@
 const express = require("express");
-const port = 5000;
+require("dotenv").config();
+// ### Connecting to DataBase ### //
+const port = process.env.PORT || 5000;
+const connectDB = require("./config/db");
+
+connectDB();
 
 const app = express();
 
-//## Body Parser Middleware
+// ### Body Parser Middleware ### //
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-//### routes
+// ### routes ### //
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to RandomIdeas API" });
 });
